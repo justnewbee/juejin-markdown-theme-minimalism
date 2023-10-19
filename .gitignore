@@ -1,0 +1,21 @@
+# common
+.*
+!.*ignore
+!.*.yml
+!.*.yaml
+!.*rc
+!.*rc.*
+!.husky
+*.log*
+
+# dev
+
+node_modules/
+
+# generated
+
+build/
+coverage/
+*.lock
+*-lock.json
+*-lock.yaml

@@ -1,7 +1,15 @@
-# juejin 默认主题
-
-主题列表：https://github.com/xitu/juejin-markdown-themes
+# Juejin 主题 - 极简主义
 
 ## License
 
 MIT
+
+## 介绍
+
+文章就是看着清爽最好，不要过多花哨的样式和颜色，本主题特点：
+
+1. 支持暗黑模式
+2. 字体粗细温和，默认 200，粗体用 400，没有 600
+3. 行距、段落间距适中
+4. `em` 元素为橙色
+5. 支持 `kbd`

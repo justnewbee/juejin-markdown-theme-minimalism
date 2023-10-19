@@ -1,8 +1,24 @@
 {
-  "name": "juejin-markdown-theme-default",
+  "name": "juejin-markdown-theme-minimalism",
   "private": true,
   "license": "MIT",
-  "dependencies": {
-    "bytemd": "^1.2.0"
+  "devDependencies": {
+    "@commitlint/cli": "^17.8.0",
+    "@commitlint/config-conventional": "^17.8.0",
+    "bytemd": "^1.2.0",
+    "husky": "^8.0.0",
+    "juejin-theme-devtool": "^0.0.4",
+    "lint-staged": "^15.0.0",
+    "postcss-scss": "^4.0.9",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard": "^34.0.0"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "boot": "rm -rf node_modules && npm i --no-lockfile",
+    "start": "jjsm minimalism.scss"
+  },
+  "lint-staged": {
+    "#*.scss": "stylelint"
   }
 }
