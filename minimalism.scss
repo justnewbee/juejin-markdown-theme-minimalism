@@ -17,7 +17,7 @@ $color-gray-tertiary: #999;
 $color-gray-tertiary-bd: #ebebeb;
 $color-gray-tertiary-bg: #eee;
 $color-gray-tertiary-bg-fade: rgb(0 0 0 / 6.67%);
-$color-gray-disabled: #c0c6cc;
+$color-gray-disabled: #666;
 $color-accent: #0064c8;
 $color-code: #39f;
 $color-em: #ff6a00;
@@ -45,34 +45,38 @@ $code-fg: $color-code;
 $code-bg: $color-gray-secondary-bg-fade;
 $em-fg: $color-em;
 $del-fg: $color-gray-disabled;
+$small-fg: $color-gray-disabled;
 $heading-fg: $color-gray-primary;
 $body-fg: $color-gray-secondary;
-$blockquote-fg: $color-gray-tertiary;
+$blockquote-fg: $color-gray-secondary;
 $blockquote-bg: fade-out($color-accent, 0.9);
-$blockquote-bd: $color-accent;
+$blockquote-bd: fade-out($color-accent, 0.3);
 $pre-fg: $color-gray-secondary;
 $pre-bg: $color-gray-secondary-bg-fade;
 $pre-bd: $color-gray-tertiary-bd;
 $table-head-fg: $color-gray-primary;
 $table-head-bg: $color-gray-secondary-bg;
-$table-head-bd: $color-gray-tertiary-bd;
+$table-th-bd: $color-gray-secondary-bd;
+$table-td-bd: $color-gray-tertiary-bd;
 // components dark
 $link-fg-dark: $color-accent-dark;
 $code-fg-dark: $color-code-dark;
 $code-bg-dark: $color-gray-secondary-bg-fade-dark;
 $em-fg-dark: $color-em-dark;
 $del-fg-dark: $color-gray-disabled-dark;
+$small-fg-dark: $color-gray-disabled-dark;
 $heading-fg-dark: $color-gray-primary-dark;
 $body-fg-dark: $color-gray-secondary-dark;
-$blockquote-fg-dark: $color-gray-tertiary-dark;
+$blockquote-fg-dark: $color-gray-secondary-dark;
 $blockquote-bg-dark: fade-out($color-accent-dark, 0.9);
-$blockquote-bd-dark: $color-accent-dark;
+$blockquote-bd-dark: fade-out($color-accent-dark, 0.3);
 $pre-fg-dark: $color-gray-secondary-dark;
 $pre-bg-dark: $color-gray-secondary-bg-fade-dark;
 $pre-bd-dark: $color-gray-tertiary-bg-fade-dark;
 $table-head-fg-dark: $color-gray-primary-dark;
 $table-head-bg-dark: $color-gray-secondary-bg-fade-dark;
-$table-head-bd-dark: $color-gray-tertiary-bg-fade-dark;
+$table-th-bd-dark: $color-gray-secondary-bg-dark;
+$table-td-bd-dark: $color-gray-tertiary-bg-fade-dark;
 
 .markdown-body {
   font-family: $font-family-base;
@@ -155,23 +159,23 @@ $table-head-bd-dark: $color-gray-tertiary-bg-fade-dark;
   }
   
   small {
-    font-size: inherit;
-    color: $blockquote-fg;
+    font-size: 0.8em;
+    color: $small-fg;
     
     .__dark & {
-      color: $blockquote-fg-dark;
+      color: $small-fg-dark;
     }
   }
   
   kbd {
     margin: 0 0.1em;
-    padding: 0.2em;
+    padding: 5px 8px 3px;
     border: 1px solid $color-gray-primary-bd;
     border-radius: 3px;
     box-shadow: 0 1px 0 0 $color-gray-secondary-bd, 0 0 0 2px $color-gray-primary-bg inset;
     background-color: $color-gray-tertiary-bg;
     font-weight: 600;
-    font-size: 0.9em;
+    font-size: 0.8em;
     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
     white-space: nowrap;
     color: $color-gray-secondary;
@@ -199,7 +203,6 @@ $table-head-bd-dark: $color-gray-tertiary-bg-fade-dark;
     min-width: 20px;
     min-height: 20px;
     margin: 0 10px;
-    border-radius: 2px;
     box-shadow: 0 2px 8px 2px $color-shadow;
     transition: all 250ms ease-in-out;
     
@@ -309,7 +312,6 @@ $table-head-bd-dark: $color-gray-tertiary-bg-fade-dark;
     color: $pre-fg;
     background-color: $pre-bg;
     border: 1px solid $pre-bd;
-    border-radius: 3px;
     tab-size: 4;
     white-space: pre-wrap;
     line-height: $line-height-pre;
@@ -376,11 +378,10 @@ $table-head-bd-dark: $color-gray-tertiary-bg-fade-dark;
   
   blockquote {
     font-size: 0.9em;
-    padding: 8px 20px 8px 17px;
+    padding: 8px 20px 8px 15px;
     color: $blockquote-fg;
-    border-left: 3px solid $blockquote-bd;
+    border-left: 5px solid $blockquote-bd;
     background-color: $blockquote-bg;
-    border-radius: 2px;
     
     .__dark & {
       color: $blockquote-fg-dark;
@@ -409,24 +410,12 @@ $table-head-bd-dark: $color-gray-tertiary-bg-fade-dark;
     
     th,
     td {
-      padding: 4px 12px;
+      padding: 4px 16px;
       font-size: 0.95em;
       text-align: left;
       color: inherit;
-      border: 1px solid $table-head-bd;
+      border: 0;
       min-width: 72px; // make most of the table layout look good
-      
-      .__dark & {
-        border-color: $table-head-bd-dark;
-      }
-      
-      &:first-child {
-        border-left-width: 0;
-      }
-      
-      &:last-child {
-        border-right-width: 0;
-      }
       
       &[align="center"] {
         text-align: center;
@@ -438,18 +427,28 @@ $table-head-bd-dark: $color-gray-tertiary-bg-fade-dark;
     }
     
     th {
-      font-weight: 400;
+      border-bottom: 2px solid $table-th-bd;
       color: $table-head-fg;
+      font-weight: 400;
       white-space: nowrap;
       
       .__dark & {
+        border-color: $table-th-bd-dark;
         color: $table-head-fg-dark;
+      }
+    }
+    
+    td {
+      border-bottom: 1px solid $table-td-bd;
+      
+      .__dark & {
+        border-bottom: 1px solid $table-td-bd-dark;
       }
     }
   }
   
   hr {
-    margin: 16px 0;
+    margin: 1.5em 0;
     padding: 0;
     border: 0;
     background: linear-gradient(90deg, $color-gray-secondary-bg-fade 0%, $color-gray-tertiary-bd 50%, $color-gray-secondary-bg-fade 100%);
