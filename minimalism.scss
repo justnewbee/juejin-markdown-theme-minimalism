@@ -390,10 +390,10 @@ $table-head-bd-dark: $color-gray-tertiary-bg-fade-dark;
   }
   
   table {
-    display: table;
     border-collapse: collapse;
     border-spacing: 0;
-    width: 100%;
+    max-width: 100%;
+    min-width: 50%;
     word-wrap: break-word;
     color: inherit;
     
@@ -414,6 +414,7 @@ $table-head-bd-dark: $color-gray-tertiary-bg-fade-dark;
       text-align: left;
       color: inherit;
       border: 1px solid $table-head-bd;
+      min-width: 72px; // make most of the table layout look good
       
       .__dark & {
         border-color: $table-head-bd-dark;
@@ -439,6 +440,7 @@ $table-head-bd-dark: $color-gray-tertiary-bg-fade-dark;
     th {
       font-weight: 400;
       color: $table-head-fg;
+      white-space: nowrap;
       
       .__dark & {
         color: $table-head-fg-dark;
