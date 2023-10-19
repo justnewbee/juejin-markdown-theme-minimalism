@@ -17,10 +17,5 @@ MIT
 
 ## 效果图
 
-### 亮色
-
-![](minimalism-light.jpg)
-
-### 暗色
-
-![](minimalism-dark.jpg)
+* [亮色](minimalism-light.jpg)
+* [暗色](minimalism-dark.jpg)
