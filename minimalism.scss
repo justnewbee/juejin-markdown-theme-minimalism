@@ -17,7 +17,7 @@ $color-gray-tertiary: #999;
 $color-gray-tertiary-bd: #ebebeb;
 $color-gray-tertiary-bg: #eee;
 $color-gray-tertiary-bg-fade: rgb(0 0 0 / 6.67%);
-$color-gray-disabled: #666;
+$color-gray-disabled: #bbb;
 $color-accent: #0064c8;
 $color-code: #39f;
 $color-em: #ff6a00;
@@ -34,7 +34,7 @@ $color-gray-tertiary-dark: #999;
 $color-gray-tertiary-bd-dark: #ebebeb;
 $color-gray-tertiary-bg-dark: #1f1f1f;
 $color-gray-tertiary-bg-fade-dark: rgb(255 255 255 / 10%);
-$color-gray-disabled-dark: #c0c6cc;
+$color-gray-disabled-dark: #666;
 $color-accent-dark: #0070cc;
 $color-code-dark: #39f;
 $color-em-dark: #ff6a00;
@@ -152,6 +152,10 @@ $table-td-bd-dark: $color-gray-tertiary-bg-fade-dark;
   del,
   s {
     color: $del-fg;
+    
+    .__dark & {
+      color: $del-fg-dark;
+    }
   }
   
   abbr {
