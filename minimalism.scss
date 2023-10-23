@@ -23,22 +23,22 @@ $color-code: #39f;
 $color-em: #ff6a00;
 $color-shadow: rgb(0 0 0 / 20%);
 // color base dark overrides
-//$color-gray-primary-dark: #d8d9da;
-//$color-gray-primary-bd-dark: #888;
-//$color-gray-primary-bg-dark: #3a3a3a;
-//$color-gray-secondary-dark: #ccc;
-//$color-gray-secondary-bd-dark: #e3e4e6;
-//$color-gray-secondary-bg-dark: #272727;
-//$color-gray-secondary-bg-fade-dark: rgb(255 255 255 / 8%);
-//$color-gray-tertiary-dark: #999;
-//$color-gray-tertiary-bd-dark: #ebebeb;
-//$color-gray-tertiary-bg-dark: #1f1f1f;
-//$color-gray-tertiary-bg-fade-dark: rgb(255 255 255 / 10%);
-//$color-gray-disabled-dark: #666;
-//$color-accent-dark: #0070cc;
-//$color-code-dark: #39f;
-//$color-em-dark: #ff6a00;
-//$color-shadow-dark: rgb(0 0 0 / 32%);
+$color-gray-primary-dark: #d8d9da;
+$color-gray-primary-bd-dark: #888;
+$color-gray-primary-bg-dark: #3a3a3a;
+$color-gray-secondary-dark: #ccc;
+$color-gray-secondary-bd-dark: #e3e4e6;
+$color-gray-secondary-bg-dark: #272727;
+$color-gray-secondary-bg-fade-dark: rgb(255 255 255 / 8%);
+$color-gray-tertiary-dark: #999;
+$color-gray-tertiary-bd-dark: #ebebeb;
+$color-gray-tertiary-bg-dark: #1f1f1f;
+$color-gray-tertiary-bg-fade-dark: rgb(255 255 255 / 10%);
+$color-gray-disabled-dark: #666;
+$color-accent-dark: #0070cc;
+$color-code-dark: #39f;
+$color-em-dark: #ff6a00;
+$color-shadow-dark: rgb(0 0 0 / 32%);
 // components light
 $link-fg: $color-accent;
 $code-fg: $color-code;
@@ -59,24 +59,34 @@ $table-head-bg: $color-gray-secondary-bg;
 $table-th-bd: $color-gray-secondary-bd;
 $table-td-bd: $color-gray-tertiary-bd;
 // components dark
-//$link-fg-dark: $color-accent-dark;
-//$code-fg-dark: $color-code-dark;
-//$code-bg-dark: $color-gray-secondary-bg-fade-dark;
-//$em-fg-dark: $color-em-dark;
-//$del-fg-dark: $color-gray-disabled-dark;
-//$small-fg-dark: $color-gray-disabled-dark;
-//$heading-fg-dark: $color-gray-primary-dark;
-//$body-fg-dark: $color-gray-secondary-dark;
-//$blockquote-fg-dark: $color-gray-secondary-dark;
-//$blockquote-bg-dark: fade-out($color-accent-dark, 0.9);
-//$blockquote-bd-dark: fade-out($color-accent-dark, 0.3);
-//$pre-fg-dark: $color-gray-secondary-dark;
-//$pre-bg-dark: $color-gray-secondary-bg-fade-dark;
-//$pre-bd-dark: $color-gray-tertiary-bg-fade-dark;
-//$table-head-fg-dark: $color-gray-primary-dark;
-//$table-head-bg-dark: $color-gray-secondary-bg-fade-dark;
-//$table-th-bd-dark: $color-gray-secondary-bg-dark;
-//$table-td-bd-dark: $color-gray-tertiary-bg-fade-dark;
+$link-fg-dark: $color-accent-dark;
+$code-fg-dark: $color-code-dark;
+$code-bg-dark: $color-gray-secondary-bg-fade-dark;
+$em-fg-dark: $color-em-dark;
+$del-fg-dark: $color-gray-disabled-dark;
+$small-fg-dark: $color-gray-disabled-dark;
+$heading-fg-dark: $color-gray-primary-dark;
+$body-fg-dark: $color-gray-secondary-dark;
+$blockquote-fg-dark: $color-gray-secondary-dark;
+$blockquote-bg-dark: fade-out($color-accent-dark, 0.9);
+$blockquote-bd-dark: fade-out($color-accent-dark, 0.3);
+$pre-fg-dark: $color-gray-secondary-dark;
+$pre-bg-dark: $color-gray-secondary-bg-fade-dark;
+$pre-bd-dark: $color-gray-tertiary-bg-fade-dark;
+$table-head-fg-dark: $color-gray-primary-dark;
+$table-head-bg-dark: $color-gray-secondary-bg-fade-dark;
+$table-th-bd-dark: $color-gray-secondary-bg-dark;
+$table-td-bd-dark: $color-gray-tertiary-bg-fade-dark;
+
+// 等 jjsm 和 jj 允许黑色主题，杀掉这个判断就醒了，加这个判断是为了 CI 不报错
+@mixin dark-theme($dark-is-supported: false) {
+  @if ($dark-is-supported) {
+    //.__dark & { // jjsm 测试用
+    [data-theme='dark'] & { // jj 站点
+      @content;
+    }
+  }
+}
 
 .markdown-body {
   font-family: $font-family-base;
@@ -88,9 +98,9 @@ $table-td-bd: $color-gray-tertiary-bd;
   color: $body-fg;
   letter-spacing: 0.5px;
   
-  //[data-theme='dark'] & {
-  //  color: $body-fg-dark;
-  //}
+  @include dark-theme() {
+    color: $body-fg-dark;
+  }
   
   // inline elements
   
@@ -111,13 +121,13 @@ $table-td-bd: $color-gray-tertiary-bd;
       transition: all 400ms ease-in-out;
     }
     
-    //[data-theme='dark'] & {
-    //  color: $link-fg-dark;
-    //
-    //  &::after {
-    //    background-color: fade-out($link-fg-dark, 0.3);
-    //  }
-    //}
+    @include dark-theme() {
+      color: $link-fg-dark;
+      
+      &::after {
+        background-color: fade-out($link-fg-dark, 0.3);
+      }
+    }
     
     &:link:hover::after {
       transform: scale(1);
@@ -132,9 +142,9 @@ $table-td-bd: $color-gray-tertiary-bd;
     background-color: $code-bg;
     color: $code-fg;
     
-    //[data-theme='dark'] & {
-    //  color: $code-fg-dark;
-    //}
+    @include dark-theme() {
+      color: $code-fg-dark;
+    }
   }
   
   strong {
@@ -144,31 +154,27 @@ $table-td-bd: $color-gray-tertiary-bd;
   em {
     color: $em-fg;
     
-    //[data-theme='dark'] & {
-    //  color: $em-fg-dark;
-    //}
+    @include dark-theme() {
+      color: $em-fg-dark;
+    }
   }
   
   del,
   s {
     color: $del-fg;
     
-    //[data-theme='dark'] & {
-    //  color: $del-fg-dark;
-    //}
-  }
-  
-  abbr {
-    text-decoration: underline dashed;
+    @include dark-theme() {
+      color: $del-fg-dark;
+    }
   }
   
   small {
     font-size: 0.8em;
     color: $small-fg;
     
-    //[data-theme='dark'] & {
-    //  color: $small-fg-dark;
-    //}
+    @include dark-theme() {
+      color: $small-fg-dark;
+    }
   }
   
   kbd {
@@ -184,12 +190,12 @@ $table-td-bd: $color-gray-tertiary-bd;
     white-space: nowrap;
     color: $color-gray-secondary;
     
-    //[data-theme='dark'] & {
-    //  border-color: $color-gray-primary-bd-dark;
-    //  box-shadow: 0 1px 0 $color-gray-secondary-bg-dark, 0 0 0 2px $color-gray-primary-bg-dark inset;
-    //  background-color: $color-gray-secondary-bg-dark;
-    //  color: $color-gray-secondary-dark;
-    //}
+    @include dark-theme() {
+      border-color: $color-gray-primary-bd-dark;
+      box-shadow: 0 1px 0 $color-gray-secondary-bg-dark, 0 0 0 2px $color-gray-primary-bg-dark inset;
+      background-color: $color-gray-secondary-bg-dark;
+      color: $color-gray-secondary-dark;
+    }
     
     &:first-child {
       margin-left: 0;
@@ -210,9 +216,9 @@ $table-td-bd: $color-gray-tertiary-bd;
     box-shadow: 0 2px 8px 2px $color-shadow;
     transition: all 250ms ease-in-out;
     
-    //[data-theme='dark'] & {
-    //  box-shadow: 0 2px 8px 2px $color-shadow-dark;
-    //}
+    @include dark-theme() {
+      box-shadow: 0 2px 8px 2px $color-shadow-dark;
+    }
     
     &:hover {
       transform: translateY(-4px);
@@ -261,9 +267,9 @@ $table-td-bd: $color-gray-tertiary-bd;
       left: -2em;
     }
     
-    //[data-theme='dark'] & {
-    //  color: $heading-fg-dark;
-    //}
+    @include dark-theme() {
+      color: $heading-fg-dark;
+    }
   }
   
   h1 {
@@ -326,20 +332,19 @@ $table-td-bd: $color-gray-tertiary-bd;
       padding: 0;
     }
     
-    //[data-theme='dark'] & {
-    //  color: $pre-fg-dark;
-    //  background-color: $pre-bg-dark;
-    //  border-color: $pre-bd-dark;
-    //
-    //  code {
-    //    color: inherit;
-    //  }
-    //}
+    @include dark-theme() {
+      color: $pre-fg-dark;
+      background-color: $pre-bg-dark;
+      border-color: $pre-bd-dark;
+      
+      code {
+        color: inherit;
+      }
+    }
   }
   
   ul,
-  ol,
-  dl {
+  ol {
     margin: 1em 0 1em 2em;
     padding: 0;
     line-height: 1.5 !important;
@@ -367,7 +372,7 @@ $table-td-bd: $color-gray-tertiary-bd;
       list-style-type: circle;
       
       ul {
-        list-style-type: disc;
+        list-style-type: square;
       }
     }
   }
@@ -376,7 +381,11 @@ $table-td-bd: $color-gray-tertiary-bd;
     list-style: decimal outside;
     
     ol {
-      list-style-type: lower-roman;
+      list-style-type: lower-alpha;
+      
+      ol {
+        list-style-type: lower-roman;
+      }
     }
   }
   
@@ -387,11 +396,11 @@ $table-td-bd: $color-gray-tertiary-bd;
     border-left: 5px solid $blockquote-bd;
     background-color: $blockquote-bg;
     
-    //[data-theme='dark'] & {
-    //  color: $blockquote-fg-dark;
-    //  border-color: $blockquote-bd-dark;
-    //  background-color: $blockquote-bg-dark;
-    //}
+    @include dark-theme() {
+      color: $blockquote-fg-dark;
+      border-color: $blockquote-bd-dark;
+      background-color: $blockquote-bg-dark;
+    }
   }
   
   table {
@@ -406,9 +415,9 @@ $table-td-bd: $color-gray-tertiary-bd;
       tr {
         background-color: $table-head-bg;
         
-        //[data-theme='dark'] & {
-        //  background-color: $table-head-bg-dark;
-        //}
+        @include dark-theme() {
+          background-color: $table-head-bg-dark;
+        }
       }
     }
     
@@ -436,18 +445,18 @@ $table-td-bd: $color-gray-tertiary-bd;
       font-weight: 400;
       white-space: nowrap;
       
-      //[data-theme='dark'] & {
-      //  border-color: $table-th-bd-dark;
-      //  color: $table-head-fg-dark;
-      //}
+      @include dark-theme() {
+        border-color: $table-th-bd-dark;
+        color: $table-head-fg-dark;
+      }
     }
     
     td {
       border-bottom: 1px solid $table-td-bd;
       
-      //[data-theme='dark'] & {
-      //  border-bottom: 1px solid $table-td-bd-dark;
-      //}
+      @include dark-theme() {
+        border-bottom: 1px solid $table-td-bd-dark;
+      }
     }
   }
   
@@ -458,9 +467,9 @@ $table-td-bd: $color-gray-tertiary-bd;
     background: linear-gradient(90deg, $color-gray-secondary-bg-fade 0%, $color-gray-tertiary-bd 50%, $color-gray-secondary-bg-fade 100%);
     height: 1px;
     
-    //[data-theme='dark'] & {
-    //  background: linear-gradient(90deg, $color-gray-secondary-bg-fade-dark 0%, fade-out($color-gray-primary-bd-dark, 0.5) 50%, $color-gray-secondary-bg-fade-dark 100%);
-    //}
+    @include dark-theme() {
+      background: linear-gradient(90deg, $color-gray-secondary-bg-fade-dark 0%, fade-out($color-gray-primary-bd-dark, 0.5) 50%, $color-gray-secondary-bg-fade-dark 100%);
+    }
   }
   
   br {
