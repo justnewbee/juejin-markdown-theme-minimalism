@@ -323,7 +323,7 @@ $table-td-bd-dark: $color-gray-tertiary-bg-fade-dark;
     background-color: $pre-bg;
     border: 1px solid $pre-bd;
     tab-size: 4;
-    white-space: pre-wrap;
+    white-space: pre;
     line-height: $line-height-pre;
     
     code {
